@@ -70,7 +70,7 @@ class Hpo {
     let result = [],
       seen = {};
     for (let hpoIndex of sortedIndex) {
-      const count = ancestorCount[hpoList[hpoIndex]];
+      let count = ancestorCount[hpoList[hpoIndex]];
       ancestorList[hpoIndex].map((ancestor, ancIndex) => {
         if (ancIndex === 0 && !(ancestor in seen)) {
           result.push({ id: ancestor, is_a: null });
