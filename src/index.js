@@ -52,6 +52,18 @@ app.get("/hpoName/:id", (req, res) => {
     return res.json({ success: true, data: data.name });
   });
 });
+
+app.get("/hpoNames/:ids", (req, res) => {
+  const ids = req.params.ids.split(",");
+  HpoMongo.find({ id: { $in: ids } }, (_, response) => {
+    let data = {};
+    response.map(e => {
+      data[e.id] = e.name;
+    });
+    return res.json({ success: true, data });
+  });
+});
+
 app.get("/hpoAncestors/:id", (req, res) => {
   const { id } = req.params;
   Hpo.getAncestors(id, []).then(data => {
