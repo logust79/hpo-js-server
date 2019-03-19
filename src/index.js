@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 
 app.get("/hpo/:id", (req, res) => {
   const { id } = req.params;
-  HpoMongo.find({ id }, (_, data) => {
+  HpoMongo.findOne({ id }, (_, data) => {
     return res.json({ success: true, data: data });
   }).catch(e => {
     console.log(e);
@@ -39,7 +39,7 @@ app.get("/hpo/:id", (req, res) => {
 
 app.get("/hpoName/:id", (req, res) => {
   const { id } = req.params;
-  HpoMongo.find({ id }, (_, data) => {
+  HpoMongo.findOne({ id }, (_, data) => {
     return res.json({ success: true, data: data.name });
   });
 });
