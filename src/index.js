@@ -37,6 +37,12 @@ app.get("/hpo/:id", (req, res) => {
   });
 });
 
+app.get("/hpoName/:id", (req, res) => {
+  const { id } = req.params;
+  HpoMongo.find({ id }, (_, data) => {
+    return res.json({ success: true, data: data.name });
+  });
+});
 app.get("/hpoAncestors/:id", (req, res) => {
   const { id } = req.params;
   Hpo.getAncestors(id, []).then(data => {
