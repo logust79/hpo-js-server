@@ -25,6 +25,15 @@ const app = express();
 // initiate Hpo
 const Hpo = new HpoClass(HpoMongo);
 
+app.use((_, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, x-auth"
+  );
+  res.header("Access-Control-Expose-Headers", "x-auth");
+  next();
+});
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
